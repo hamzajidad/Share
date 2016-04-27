@@ -18,12 +18,15 @@ public class Tchat {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void NewPage() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Tchat window = new Tchat();
 					window.frmTchat.setVisible(true);
+					window.frmTchat.setSize(400,400);
+
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -45,7 +48,7 @@ public class Tchat {
 		frmTchat = new JFrame();
 		frmTchat.setBackground(Color.GRAY);
 		frmTchat.setTitle("Tchat");
-		frmTchat.setBounds(100, 100, 450, 300);
+		//frmTchat.setBounds(100, 100, 450, 300);
 		frmTchat.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
