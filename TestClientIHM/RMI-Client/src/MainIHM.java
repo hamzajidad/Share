@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -23,6 +24,7 @@ public class MainIHM {
 	public static JFrame frame;
 	private JTextField txtRechercher;
 	private JTextField textField;
+	public static ArrayList<Tchat> listTchat = new ArrayList<Tchat>();
 	/**
 	 * Launch the application.
 	 * @throws NotBoundException 
@@ -55,8 +57,9 @@ public class MainIHM {
 	 * Create the application.
 	 */
 	public MainIHM() {
+		
 		initialize();
-
+		
 		Thread actualite = new Thread(new ThreadFilDactualiteIHM());
 		actualite.start();
 		

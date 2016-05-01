@@ -38,8 +38,19 @@ public class ThreadFilDactualiteIHM implements Runnable {
 				if(!listTchat.isEmpty()){
 					for(int i = 0; i < listTchat.size(); i++){
 						Profil destinataire = new Profil(listTchat.get(i));
-						Tchat tchat = new Tchat(LoginIHM.utilisateur,destinataire);
-						TchatIHM.NewPage(tchat);
+						Boolean bool =true;
+						if(!MainIHM.listTchat.isEmpty()){
+							System.out.println(MainIHM.listTchat.size());
+							for(int j=0; j < MainIHM.listTchat.size(); j++){
+								if(MainIHM.listTchat.get(j).getCorrespondant().getLogin().equals(destinataire.getLogin())){
+									bool=false;
+								}
+							}
+						}
+						if(bool){
+							Tchat tchat = new Tchat(LoginIHM.utilisateur,destinataire);
+							TchatIHM.NewPage(tchat);
+						}
 					}
 				}
 

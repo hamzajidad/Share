@@ -64,8 +64,18 @@ public class RechercheDeProfilIHM {
 				String loginDestinataire = textField.getText();
 				try {
 					Profil destinataire = new Profil(loginDestinataire);
-					Tchat tchat = new Tchat(LoginIHM.utilisateur,destinataire);
-					TchatIHM.NewPage(tchat);
+					Boolean bool =true;
+					if(!MainIHM.listTchat.isEmpty()){
+						for(int j=0; j < MainIHM.listTchat.size(); j++){
+							if(MainIHM.listTchat.get(j).getCorrespondant().getLogin().equals(destinataire.getLogin())){
+								bool=false;
+							}
+						}
+					}
+					if(bool){
+						Tchat tchat = new Tchat(LoginIHM.utilisateur,destinataire);
+						TchatIHM.NewPage(tchat);
+					}
 
 					
 				} catch (MalformedURLException | RemoteException | NotBoundException e) {
