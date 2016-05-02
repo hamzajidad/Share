@@ -13,6 +13,4 @@ public class TchatMethodes{
 		Remote r = Naming.lookup("rmi://"+Client.getUrl()+"/Tchat");
 		return ((TchatInterface) r).detecterConversation(LoginIHM.utilisateur.getLogin());
 	}
-
-
 }

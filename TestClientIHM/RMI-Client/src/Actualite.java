@@ -12,12 +12,13 @@ import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public class Actualite implements Serializable{
+public class Actualite implements Serializable,Controllable{
 	private String date;
 	private String contenu;
 	private String idProfil;
 	private int idActualite;
-	
+	private int affichable;
+	private String titre;
 
 	/**
 	 * 
@@ -25,12 +26,13 @@ public class Actualite implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@SuppressWarnings("deprecation")
-	public Actualite(String contenu, String idProfil) {
+	public Actualite(String contenu, String idProfil, String titre) {
 		this.contenu = contenu;
 		this.idProfil = idProfil;
 		Date d = new Date();
-		this.date=d.getDay()+"/"+d.getMonth()+"/"+d.getYear();
+		this.date=Dates.date()+" "+Dates.heure();
 		idActualite =0;
+		this.titre=titre;
 		
 	}
 	
@@ -43,6 +45,7 @@ public class Actualite implements Serializable{
 		contenu=actu[0];
 		idProfil=actu[1];
 		date=actu[2];
+		titre=actu[3];
 		
 	}
 
@@ -63,9 +66,15 @@ public class Actualite implements Serializable{
 	}
 	
 	public void sendActualite() throws RemoteException, MalformedURLException, NotBoundException{
-		
+		if(this instanceof Controllable){affichable=0;}else{affichable=1;}
 		Remote r = Naming.lookup("rmi://"+Client.getUrl()+"/Actualite");
-		((ActualiteInterface) r).posterActualite(contenu, idProfil, date);
+		((ActualiteInterface) r).posterActualite(contenu, titre, idProfil, date, affichable);
+		
+	}
+	
+	public void modifierAffichable(int id, boolean choix, boolean mod) throws RemoteException, MalformedURLException, NotBoundException{
+		Remote r = Naming.lookup("rmi://"+Client.getUrl()+"/Actualite");
+		((ActualiteInterface) r).modifierAffichable(id,choix,mod);
 		
 	}
 	
@@ -73,6 +82,10 @@ public class Actualite implements Serializable{
 		
 		return idActualite;
 		
+	}
+	
+	public String getTitre(){
+		return titre;
 	}
 	
 	public void AfficherUneActualite(){

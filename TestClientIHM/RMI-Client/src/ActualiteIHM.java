@@ -16,6 +16,7 @@ public class ActualiteIHM {
 
 	private JFrame frmActualit;
 	private JTextField txtPublierIci;
+	private JTextField txtTitre;
 
 	/**
 	 * Launch the application.
@@ -76,9 +77,33 @@ public class ActualiteIHM {
 		txtPublierIci = new JTextField();
 		txtPublierIci.setBackground(new Color(250, 235, 215));
 		txtPublierIci.setText("Publier ici");
-		txtPublierIci.setBounds(12, 12, 424, 160);
+		txtPublierIci.setBounds(12, 38, 424, 160);
 		frmActualit.getContentPane().add(txtPublierIci);
 		txtPublierIci.setColumns(10);
+		
+		txtTitre = new JTextField();
+		txtTitre.setBackground(new Color(250, 235, 215));
+		txtTitre.setText("Titre de l'actualite");
+		txtTitre.setBounds(12, 12, 424, 25);
+		frmActualit.getContentPane().add(txtTitre);
+		txtTitre.setColumns(10);
+		
+		
+		
+		JButton btnModerateur = new JButton("Modérer actualites");
+		
+		btnModerateur.setBackground(new Color(233, 150, 122));
+		btnModerateur.setBounds(15, 244, 140, 25);
+		btnModerateur.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ActualiteModerateurIHM.main();
+				frmActualit.dispose();
+
+			}
+		});
+		
+		if(LoginIHM.utilisateur.getModerateur()==true){frmActualit.getContentPane().add(btnModerateur);}
+
 		
 		frmActualit.setSize(500,500);
 		frmActualit.setVisible(true); 
@@ -86,9 +111,10 @@ public class ActualiteIHM {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
+					String titre = txtTitre.getText();
 					String contenu = txtPublierIci.getText();
 					System.out.println(contenu);
-					Actualite a=new Actualite(contenu, LoginIHM.utilisateur.getLogin() );
+					Actualite a=new Actualite(contenu, LoginIHM.utilisateur.getLogin(), titre );
 					a.sendActualite();
 					frmActualit.dispose();
 				} catch (RemoteException | MalformedURLException | NotBoundException e1) {

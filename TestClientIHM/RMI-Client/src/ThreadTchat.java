@@ -27,6 +27,7 @@ public class ThreadTchat implements Runnable{
 		
 		// TODO Auto-generated method stub
 		while(true){
+			System.out.println("debut whiletchat");
 		try {
 			if(panel!=null){
 			textArea = new JTextArea();
@@ -44,6 +45,14 @@ public class ThreadTchat implements Runnable{
 			}
 			
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			System.out.println("je mendors");
+			Thread.sleep(5000);
+			System.out.println("je me reveil");
+			} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

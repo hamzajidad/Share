@@ -13,6 +13,7 @@ public class AfficherActualiteIHM {
 	private static String idProfil;
 	private static String date;
 	private static String contenu;
+	private static String titre;
 	
 	/**
 	 * Launch the application.
@@ -24,6 +25,7 @@ public class AfficherActualiteIHM {
 					idProfil=args[0];
 					contenu=args[1];
 					date=args[2];
+					titre=args[3];
 					AfficherActualiteIHM window = new AfficherActualiteIHM();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
@@ -55,14 +57,14 @@ public class AfficherActualiteIHM {
 		
 		
 		JLabel lblNewLabel = new JLabel(date);
-		lblNewLabel.setBounds(341, 16, 61, 16);
+		lblNewLabel.setBounds(301, 16, 151, 16);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel(contenu);
 		lblNewLabel_1.setBounds(6, 94, 438, 139);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		JLabel lblTitre = new JLabel("Titre");
+		JLabel lblTitre = new JLabel(titre);
 		lblTitre.setBounds(129, 54, 177, 16);
 		frame.getContentPane().add(lblTitre);
 		

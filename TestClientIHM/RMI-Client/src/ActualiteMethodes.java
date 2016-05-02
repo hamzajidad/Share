@@ -14,6 +14,11 @@ public class ActualiteMethodes{
 		List<Integer> filActu = ((ActualiteInterface) r).recupererFilActu();
 		return filActu;
 	}
-
+	
+	public static List<Integer> recupererActuNonValide(boolean mod) throws MalformedURLException, RemoteException, NotBoundException{
+		Remote r = Naming.lookup("rmi://"+Client.getUrl()+"/Actualite");
+		List<Integer> filActu = ((ActualiteInterface) r).recupererActuNonValide(mod);
+		return filActu;
+	}
 
 }

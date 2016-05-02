@@ -74,6 +74,7 @@ public class RechercheDeProfilIHM {
 					}
 					if(bool){
 						Tchat tchat = new Tchat(LoginIHM.utilisateur,destinataire);
+						MainIHM.listTchat.add(tchat);
 						TchatIHM.NewPage(tchat);
 					}
 

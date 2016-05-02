@@ -100,6 +100,7 @@ public class TchatIHM {
 		panel.add(btnFermer);
 		btnFermer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e1) {
+				MainIHM.listTchat.remove(tchat);
 				frmTchat.dispose();
 			}
 		});
